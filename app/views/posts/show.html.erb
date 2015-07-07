@@ -1,0 +1,47 @@
+<h1>POST</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+  <small> | By: <%= @post.user.name %></small>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>Votos: <strong><%= @post.votes.count %></strong></p>
+
+<% if can? :upvote, Post %>
+	<p>Vota Aqui:
+		<% unless @post.voted_by? current_user %>
+			<%= link_to '+1', upvote_post_path(@post) %>
+		<% else %>
+			<%= link_to '-1', upvote_post_path(@post) %>
+		<% end %>
+	</p>
+<% end %>
+
+
+<% if can? :create, Comment %>
+	<h2>Deja Tu Comentario</h2>
+	<%= render 'comments/form' %>
+<% end %>
+
+
+<h2>Comentarios (<%= @comments.count %>)</h2>
+
+<% if @comments.any? %>
+	<%= render partial: 'comments/comment', collection: @comments %>
+<% else %>
+	<p>No hay comentarios, se el primero en dejar el tuyo!!!! :D</p>
+<% end %>
+
+
+
+<% if can? :update, @post %>
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
+
+<%= link_to 'Back', posts_path %>

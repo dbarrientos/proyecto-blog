@@ -1,0 +1,22 @@
+<p><%= comment.user.name %> | <%= time_tag comment.created_at, time_ago_in_words(comment.created_at) %></p>
+
+<p><%= comment.content %></p>
+
+<% if can? :destroy, comment %>
+	<%= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete %>
+<% end %>
+
+<p>Likes: <strong><%= comment.comment_votes.count %></strong></p>
+
+<% if can? :upvote, Comment %>
+	<p>Like:
+		<% unless comment.voted_by? current_user %>
+			<%= link_to '+1', upvote_post_comment_path(@post, comment) %>
+		<% else %>
+			<%= link_to '-1', upvote_post_comment_path(@post, comment) %>
+		<% end %>
+	</p>
+<% end %>
+
+
+<hr>
