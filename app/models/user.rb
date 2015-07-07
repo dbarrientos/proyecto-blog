@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # carrierwave
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
@@ -74,5 +75,7 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+
 
 end

@@ -37,6 +37,7 @@ LOG:  database system is shut down
 LOG:  database system was shut down at 2015-05-18 15:58:53 CLT
 LOG:  autovacuum launcher started
 LOG:  database system is ready to accept connections
+<<<<<<< HEAD
 LOG:  autovacuum launcher shutting down
 LOG:  received smart shutdown request
 LOG:  shutting down
@@ -65,3 +66,5 @@ LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 LOG:  could not send data to client: Broken pipe
 FATAL:  connection to client lost
+=======
+>>>>>>> 2318a9c8655d513f89dbf377ee637a547e17b25f

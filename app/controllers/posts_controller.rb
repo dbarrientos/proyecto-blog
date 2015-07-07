@@ -74,6 +74,7 @@ class PostsController < ApplicationController
   end
 
 
+
   def upvote
     @post = Post.find(params[:id])
     @vote = @post.votes.build(user: current_user)
@@ -87,6 +88,7 @@ class PostsController < ApplicationController
       redirect_to @post, alert: 'Tu voto no se ha guardado :('
     end
   end
+
 
 
   private

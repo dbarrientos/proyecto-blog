@@ -29,6 +29,7 @@ class CommentsController < ApplicationController
     redirect_to @post
   end
 
+
   def upvote
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
@@ -43,6 +44,7 @@ class CommentsController < ApplicationController
       redirect_to @post, alert: 'Tu voto no se ha guardado :('
     end
   end
+
 
   private
     # proteccion antes de crear el objeto para evitar injeccion de datos,

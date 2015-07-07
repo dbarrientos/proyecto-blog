@@ -4,8 +4,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
+<<<<<<< HEAD
 gem 'carrierwave'
 gem 'mini_magick'
+=======
+>>>>>>> 2318a9c8655d513f89dbf377ee637a547e17b25f
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -27,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -35,6 +39,7 @@ gem 'fog'
 gem 'fog-aws'
 
 gem 'cancancan', '~> 1.10'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -55,19 +60,23 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-ssh-doctor'
+
   gem 'pry-rails'
 
   gem 'better_errors'
 
   gem 'dotenv-rails'
 
+
   gem 'quiet_assets'
 
   gem 'faker'
+
 end
 

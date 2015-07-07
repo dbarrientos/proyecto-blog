@@ -6,6 +6,7 @@
 	<%= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete %>
 <% end %>
 
+
 <p>Likes: <strong><%= comment.comment_votes.count %></strong></p>
 
 <% if can? :upvote, Comment %>
@@ -17,6 +18,7 @@
 		<% end %>
 	</p>
 <% end %>
+
 
 
 <hr>

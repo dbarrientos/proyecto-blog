@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   root 'posts#index'
 
   resources :posts do
+
     resources :comments, only: [:create, :destroy] do
       member do
         get 'upvote'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
       get 'upvote'
     end
   end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

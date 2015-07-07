@@ -40,8 +40,10 @@ bower.json
 # Ignore dotenv
 .env
 
+
 # ignore tmp uploads files
 /public/uploads/tmp/
+
 
 ### OSX ###
 .DS_Store
