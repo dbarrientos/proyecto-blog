@@ -42,7 +42,7 @@ gem 'cancancan', '~> 1.10'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+ gem 'dotenv-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -70,7 +70,7 @@ group :development, :test do
 
   gem 'better_errors'
 
-  gem 'dotenv-rails'
+ 
 
 
   gem 'quiet_assets'
