@@ -3,6 +3,24 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
+  def pay
+    @product = Product.find(params[:id])
+    @payment = Payment.create
+
+    @payment.order_id = @payment.id.to_s + SecureRandom.random_number(10).to_s
+    @payment.session_id = SecureRandom.random_number(10).to_s
+    @payment.amount = @product.price
+    @payment.save
+
+    
+
+    @tbk_tipo_transaccion = "TR_NORMAL"
+    @tbk_url_cgi = "http://186.64.122.15/cgi-bin/cgidavid/tbk_bp_pago.cgi"
+    @tbk_url_exito = "http://david.beerly.cl/payment/success"
+    @tbk_url_fracaso = "http://david.beerly.cl/payment/failure"
+
+  end
+
   def index
     @products = Product.all
   end

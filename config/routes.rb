@@ -1,22 +1,25 @@
 Rails.application.routes.draw do
 
 
-  resources :products
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+get "/products/pay"
+resources :products
 
-  root 'posts#index'
+  # resources :products
+  # devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-  resources :posts do
+  # root 'posts#index'
 
-    resources :comments, only: [:create, :destroy] do
-      member do
-        get 'upvote'
-      end
-    end
-    member do
-      get 'upvote'
-    end
-  end
+  # resources :posts do
+
+  #   resources :comments, only: [:create, :destroy] do
+  #     member do
+  #       get 'upvote'
+  #     end
+  #   end
+  #   member do
+  #     get 'upvote'
+  #   end
+  # end
 
 
 
