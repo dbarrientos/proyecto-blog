@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   def confirmation
     payment = Payment.find(params['TBK_ORDEN_COMPRA'])
     logger.info 'Hola, esta cosa esta funcionando'
-    render text: 'Aprobado'
+    render text: 'ACEPTADO'
   end  
 
   def index
