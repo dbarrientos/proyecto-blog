@@ -21,6 +21,11 @@ class ProductsController < ApplicationController
 
   end
 
+  def confirmation
+    logger.info 'Hola, esta cosa esta funcionando'
+    render text: '1'
+  end  
+
   def index
     @products = Product.all
   end
