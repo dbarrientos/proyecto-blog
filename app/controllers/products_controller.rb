@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
     @payment.session_id = SecureRandom.random_number(10).to_s
     @payment.amount = @product.price
     @payment.status = false
+    @payment.product = @product
     @payment.save
 
     
@@ -25,14 +26,28 @@ class ProductsController < ApplicationController
 
   def confirmation
     payment = Payment.where(order_id: params["TBK_ORDEN_COMPRA"]).where(session_id: params["TBK_ID_SESION"]).first
-    render text: "RECHAZADO" if payment.nil?
-    render text: "RECHAZADO" if payment.amount.to_s + "00" != params[:TBK_MONTO] 
-    render text: "RECHAZADO" if !params.has_key?(:TBK_RESPUESTA) || !params.has_key?(:TBK_ORDEN_COMPRA) || !params.has_key?(:TBK_TIPO_TRANSACCION) || !params.has_key?(:TBK_MONTO) || !params.has_key?(:TBK_CODIGO_AUTORIZACION) || !params.has_key?(:TBK_FECHA_CONTABLE) || !params.has_key?(:TBK_HORA_TRANSACCION) || !params.has_key?(:TBK_ID_SESION) || !params.has_key?(:TBK_ID_TRANSACCION) || !params.has_key?(:TBK_TIPO_PAGO) || !params.has_key?(:TBK_NUMERO_CUOTAS) || !params.has_key?(:TBK_VCI) || !params.has_key?(:TBK_MAC)
-    render text: "RECHAZADO" if payment.status
+    rejected = false
+
+    rejected = true if payment.nil?
+    rejected = true if payment.amount.to_s + "00" != params[:TBK_MONTO] 
+    rejected = true if !params.has_key?(:TBK_RESPUESTA) || !params.has_key?(:TBK_ORDEN_COMPRA) || !params.has_key?(:TBK_TIPO_TRANSACCION) || !params.has_key?(:TBK_MONTO) || !params.has_key?(:TBK_CODIGO_AUTORIZACION) || !params.has_key?(:TBK_FECHA_CONTABLE) || !params.has_key?(:TBK_HORA_TRANSACCION) || !params.has_key?(:TBK_ID_SESION) || !params.has_key?(:TBK_ID_TRANSACCION) || !params.has_key?(:TBK_TIPO_PAGO) || !params.has_key?(:TBK_NUMERO_CUOTAS) || !params.has_key?(:TBK_VCI) || !params.has_key?(:TBK_MAC)
+    rejected = true if payment.status
 
     payment.status = true
-    logger.info "Hola me estoy llamando"
-    render text: "ACEPTADO"
+    payment.payment_type = params[:TBK_TIPO_PAGO]
+    
+
+    if rejected
+      render text: "RECHAZADO"
+    else
+      if params[:TBK_RESPUESTA] == "0"
+        #aca hay lucas
+        payment.card_last_numbers = params[:TBK_FINAL_NUMERO_TARJETA]
+        payment.authorization = params[:TBK_CODIGO_AUTORIZACION]
+      end
+      render text: "ACEPTADO"
+    end 
+    payment.save 
   end 
 
   def index
