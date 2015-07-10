@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pago exitoso</title>
+</head>
+<body>
+	<h1>Datos de tu pago</h1>
+	<p>Nombre del comprador <%= current_user.name.to_s %>  %></p>
+	<p>URL Comercio http://david.beerly.cl %></p>
+	<p>ID Transacción <%= @payment.session_id %></p>
+	<p>Número de orden <%= @payment.order_id %></p>
+	<p>Tipo de transacción Venta</p>
+	<p>Tipo de pago <%= payment.payment_type %></p>
+	<p>Codigo autorización <%= @payment.authorization %></p>
+	
+	<% if @payment.payment_type == "VN" %>
+		<p>Numero de Coutas <%= @payment.number_shares %></p>
+		<p>Tipo de cuotas Sin Cuotas</p>
+	<% elsif @payment.payment_type == "VC" %>
+		<p>Numero de Coutas <%= @payment.number_shares %></p>
+		<p>Tipo de cuotas Con Cuotas</p>
+	<% elsif @payment.payment_type == "CI" %>
+		<p>Numero de Coutas <%= @payment.number_shares %></p>
+		<p>Tipo de cuotas Cuotas Comercio </p>
+	<% end %>	
+		
+	<p>Monto transacción <%= @payment.tbk_amount %></p>
+	<p>Fecha transacción <%= @payment.transaction_date %></p>
+	<p>Nombre comercion DavidBeerly S.A.</p>
+	<p>Tarjeta terminada en <%= @payment.card_last_numbers %></p>
+
+
+
+
+
+	<footer>
+		<small>PUDRETE TRANSBANK</small>
+	</footer>
+
+</body>
+</html>

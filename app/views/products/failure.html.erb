@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pago falló</title>
+</head>
+<body>
+	<h1>Transaccion Rechazada N°<%= @payment.order_id %></h1>
+
+	<p>Las posibles causas de este rechazo son:</p>
+
+	<ul>
+
+		<li> Error en el ingreso de los datos de su tarjeta de crédito o debito (fecha y/o codigo de seguridad).</li>
+	
+		<li>Su tarjeta de crédito o debito no cuenta con el cupo necesario para cancelar la compra.</li>
+
+		<li>Tarjeta aún no habilitada en el sistema financiero</li>
+	</ul>
+
+</body>
+</html>

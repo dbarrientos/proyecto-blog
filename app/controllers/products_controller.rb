@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
     @payment.amount = @product.price
     @payment.status = false
     @payment.product = @product
+    
+
     @payment.save
 
     
@@ -25,7 +27,7 @@ class ProductsController < ApplicationController
   end
 
   def confirmation
-    payment = Payment.where(order_id: params["TBK_ORDEN_COMPRA"]).where(session_id: params["TBK_ID_SESION"]).first
+    payment = Payment.where(order_id: params[:TBK_ORDEN_COMPRA]).where(session_id: params[:TBK_ID_SESION]).first
     rejected = false
 
     rejected = true if payment.nil?
@@ -44,11 +46,26 @@ class ProductsController < ApplicationController
         #aca hay lucas
         payment.card_last_numbers = params[:TBK_FINAL_NUMERO_TARJETA]
         payment.authorization = params[:TBK_CODIGO_AUTORIZACION]
+        payment.transaction_type = params[:TBK_TIPO_TRANSACCION]
+        payment.transaction_date = params[:TBK_FECHA_CONTABLE]
+        payment.number_shares = params[:TBK_NUMERO_CUOTAS]
+        payment.tbk_amount = params[:TBK_MONTO]
+        
+
       end
       render text: "ACEPTADO"
     end 
     payment.save 
   end 
+
+  def success
+    @payment = Payment.find(params[:order_id])
+    
+  end
+
+  def failure
+    @payment = Payment.find(params[:order_id])
+  end
 
   def index
     @products = Product.all
