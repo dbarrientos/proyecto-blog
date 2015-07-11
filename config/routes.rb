@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 post '/products/confirmation'
+post '/products/success'
+post '/products/failure'
 get "/products/pay"
 resources :products
 
