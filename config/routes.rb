@@ -7,9 +7,9 @@ get "/products/pay"
 resources :products
 
   # resources :products
-   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  # devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-   root 'posts#index'
+  # root 'posts#index'
 
   # resources :posts do
 
