@@ -10,7 +10,7 @@
 	<p>ID Transacción <%= @payment.session_id %></p>
 	<p>Número de orden <%= @payment.order_id %></p>
 	<p>Tipo de transacción Venta</p>
-	<p>Tipo de pago <%= payment.payment_type %></p>
+	<p>Tipo de pago <%= @payment.payment_type %></p>
 	<p>Codigo autorización <%= @payment.authorization %></p>
 	
 	<% if @payment.payment_type == "VN" %>
