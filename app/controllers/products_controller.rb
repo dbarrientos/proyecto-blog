@@ -59,12 +59,13 @@ class ProductsController < ApplicationController
   end 
 
   def success
-    @payment = Payment.find(params[:order_id])
+    @payment = Payment.where(order_id: params[:TBK_ORDEN_COMPRA]).first
     
   end
 
   def failure
-    @payment = Payment.find(params[:order_id])
+    @payment = Payment.where(order_id: params[:TBK_ORDEN_COMPRA]).first
+    
   end
 
   def index
